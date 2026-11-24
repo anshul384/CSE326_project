@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MentorMatch | Student Mentorship Matching</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- STEP 1: registration / login page (shown first, filled in by script.js) -->
+  <div id="auth" class="auth hidden"></div>
+
+  <!-- STEP 2: the main website (only shown after logging in) -->
+  <div id="site" class="site hidden">
+    <aside class="side">
+      <a class="logo" href="#" onclick="setTab('home'); return false;">🎓 Mentor<b>Match</b></a>
+      <div id="userbox" class="userbox"></div>
+      <nav id="menu"></nav>
+      <!-- these two buttons stay fixed in the sidebar all the time -->
+      <div class="sidebtns">
+        <button onclick="helpBox.showModal()">❓ Help</button>
+        <button class="out" onclick="logout()">🚪 Log out</button>
+      </div>
+    </aside>
+    <main id="app"></main>
+  </div>
+
+  <!-- popup: invitation message -->
+  <dialog id="inviteBox">
+    <form method="dialog" onsubmit="confirmInvite(event)">
+      <h3>Invite <span id="inviteName"></span></h3>
+      <p class="muted">Tell them a little about why you'd like their guidance.</p>
+      <textarea id="inviteMsg" rows="4" required>Hello! I'd really like to be mentored by you.</textarea>
+      <div class="row">
+        <button type="button" class="btn ghost" onclick="inviteBox.close()">Cancel</button>
+        <button type="submit" class="btn">Send invitation</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- popup: help -->
+  <dialog id="helpBox">
+    <h3>How to use MentorMatch</h3>
+    <ol class="list">
+      <li><b>Mentee:</b> open <i>Find Mentors</i>, compare match scores and send an invitation.</li>
+      <li><b>Mentor:</b> open <i>Invitations</i> and accept or decline requests.</li>
+      <li>After acceptance, both sides can log meetings and give feedback.</li>
+      <li><b>Admin:</b> monitors users, pairings, meetings and ratings.</li>
+    </ol>
+    <p class="muted">Match score = 50% interests + 20% goals + 30% availability.</p>
+    <div class="row"><button class="btn" onclick="helpBox.close()">Got it</button></div>
+  </dialog>
+
+  <div id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
